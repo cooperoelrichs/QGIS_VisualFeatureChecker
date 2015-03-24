@@ -26,12 +26,18 @@ except AttributeError:
 class Ui_VisualFeatureChecker(object):
     def setupUi(self, VisualFeatureChecker):
         VisualFeatureChecker.setObjectName(_fromUtf8("VisualFeatureChecker"))
-        VisualFeatureChecker.resize(400, 300)
+        #VisualFeatureChecker.resize(175, 50)
+        VisualFeatureChecker.setGeometry(QtCore.QRect(500, 200, 175, 50))
         self.buttonBox = QtGui.QDialogButtonBox(VisualFeatureChecker)
-        self.buttonBox.setGeometry(QtCore.QRect(30, 240, 341, 32))
+        self.buttonBox.setGeometry(QtCore.QRect(40, 10, 100, 50))
         self.buttonBox.setOrientation(QtCore.Qt.Horizontal)
         self.buttonBox.setStandardButtons(QtGui.QDialogButtonBox.Cancel|QtGui.QDialogButtonBox.Ok)
         self.buttonBox.setObjectName(_fromUtf8("buttonBox"))
+
+        self.label = QtGui.QLabel(VisualFeatureChecker)
+        self.label.setText(_fromUtf8("Run the Visual Feature Checker?"))
+        self.label.setGeometry(QtCore.QRect(10, 5, 160, 10))
+        self.label.setVisible(True)
 
         self.retranslateUi(VisualFeatureChecker)
         QtCore.QObject.connect(self.buttonBox, QtCore.SIGNAL(_fromUtf8("accepted()")), VisualFeatureChecker.accept)

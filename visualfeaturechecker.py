@@ -24,7 +24,7 @@ from PyQt4.QtCore import *
 from PyQt4.QtGui import *
 from qgis.core import *
 # Initialize Qt resources from file resources.py
-import resources_rc
+import resources
 # Import the code for the dialog
 from visualfeaturecheckerdialog import VisualFeatureCheckerDialog
 import os.path
@@ -86,13 +86,20 @@ class VisualFeatureChecker:
             currentLayer.removeSelection()
             currentLayer.select(feature.id())
             self.iface.actionPanToSelected().trigger()
+            #msgBoxResult = self.continueMessageBox
+            #if msgBoxResult != QMessageBox.Ok: return
 
-            msgBox = QMessageBox()
-            msgBox.setText('Continue?')
-            msgBox.setStandardButtons(QMessageBox.Ok | QMessageBox.Cancel)
-            ret = msgBox.exec_();
-            if ret != QMessageBox.Ok: return
-            #self.dlg.show()
-            #result = self.dlg.exec_()
-            #if result != True: return
-            #raw_input("waiting...")
+            self.dlg.show()
+            result = self.dlg.exec_()
+            if result != 1: return
+
+    def continueMessageBox(self):
+        msgBox = QMessageBox()
+        msgBox.setText('Continue?')
+        msgBox.setStandardButtons(QMessageBox.Ok | QMessageBox.Cancel)
+        #msgBox.setWindowModality(Qt::NonModal)
+        msgBox.exec_();
+        #self.dlg.show()
+        #result = self.dlg.exec_()
+        #if result != True: return
+        #raw_input("waiting...")
